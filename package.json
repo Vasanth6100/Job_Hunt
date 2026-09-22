@@ -1,0 +1,12 @@
+{
+  "name": "job-hunt-agent",
+  "version": "1.0.0",
+  "private": true,
+  "description": "JobHunt Agent - Unified Frontend and Backend",
+  "scripts": {
+    "start": "python run.py",
+    "dev": "python run.py",
+    "build:frontend": "npm --prefix frontend run build",
+    "dev:frontend-standalone": "npm --prefix frontend run dev"
+  }
+}

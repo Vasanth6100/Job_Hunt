@@ -1,0 +1,17 @@
+[
+  {
+    "id": "usr_demo_101",
+    "email": "demo@jobhunt.com",
+    "name": "Alex Mercer",
+    "role": "Software & AI Engineer",
+    "experience": "2 years",
+    "skills": ["Python", "FastAPI", "React", "Machine Learning", "SQL", "Git", "Docker"],
+    "preferences": {
+      "preferredRole": "Python Developer / AI Engineer",
+      "preferredLocation": "Bengaluru, India",
+      "jobType": "Full-time",
+      "minSalary": "₹8 LPA",
+      "minMatchScore": 70
+    }
+  }
+]
