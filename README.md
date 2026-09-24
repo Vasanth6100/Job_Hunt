@@ -298,7 +298,7 @@ npm run dev
 | **GitHub Repository** | [Vasanth6100/Job_Hunt](https://github.com/Vasanth6100/Job_Hunt) |
 | **Email** | [vasanthnadar610@gmail.com](mailto:vasanthnadar610@gmail.com) |
 | **Project Title** | JobHunt Agent – Intelligent Agentic AI for Automated Job Discovery and Filtering |
-| **Degree / Department** | Computer Science & Engineering |
+| **Degree / Department** | Information Technology |
 | **Academic Year** | 2025 – 2026 |
 
 ---
