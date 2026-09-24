@@ -1,398 +1,311 @@
-# JobHunt Agent – Intelligent Agentic AI for Automated Job Discovery and Filtering
-**Academic Research MVP (50% Implementation)**
+# 🎯 JobHunt Agent – Intelligent AI for Job Discovery & Filtering
 
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-green?style=flat-square&logo=fastapi)](https://fastapi.tiangolo.com/)
-[![React](https://img.shields.io/badge/React-19-blue?style=flat-square&logo=react)](https://react.dev/)
-[![Sentence Transformers](https://img.shields.io/badge/all--MiniLM--L6--v2-Sentence%20Transformers-orange?style=flat-square)](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-v4-blue?style=flat-square&logo=tailwindcss)](https://tailwindcss.com/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-009688?style=flat-square&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev/)
+[![Sentence Transformers](https://img.shields.io/badge/Sentence--Transformers-all--MiniLM--L6--v2-orange?style=flat-square)](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
----
-
-## Project Overview
-
-**JobHunt Agent** is an academic research project that proposes an Intelligent Agentic AI system for automated job discovery and filtering. Unlike traditional job portals that rely on keyword matching, JobHunt Agent leverages **semantic vector representations** via `all-MiniLM-L6-v2` (Sentence Transformers) to compute **cosine similarity** between a candidate's resume and job descriptions.
-
-> **IEEE Research Paper**: "JobHunt Agent – An Intelligent Agentic AI for Automated Job Discovery and Filtering"
+> **Repository:** [https://github.com/Vasanth6100/Job_Hunt](https://github.com/Vasanth6100/Job_Hunt)  
+> An Intelligent Agentic AI system that matches candidates to jobs using real semantic AI vectors and detects fake job scams.
 
 ---
 
-## Architecture
-
-```
-React Frontend (Vite)
-       │
-       │ REST API / JSON
-       ▼
-FastAPI Backend (Python)
-       │
-       ├── Resume Processing (rule-based entity extraction)
-       │
-       ├── Sentence Transformers (all-MiniLM-L6-v2)
-       │       └── 384-dimensional dense embeddings
-       │
-       ├── Cosine Similarity Matrix (scikit-learn)
-       │       └── Resume ↔ Job semantic match scores
-       │
-       ├── Job Ranking (sorted by similarity score)
-       │
-       ├── Fake Job Heuristic Engine (rule-based)
-       │
-       └── JSON Job Dataset (32 realistic records)
-```
+## 📌 Table of Contents
+1. [Overview](#-1-overview)
+2. [Application Screenshots](#-2-application-screenshots)
+3. [Tech Stack](#-3-tech-stack)
+4. [Architecture](#-4-architecture)
+5. [Sample Output](#-5-sample-output)
+6. [Working (How It Works)](#-6-working-how-it-works)
+7. [Reference of Papers](#-7-reference-of-papers)
+8. [Demo Walkthrough](#-8-demo-walkthrough)
+9. [Student Details](#-9-student-details)
 
 ---
 
-## Technology Stack
+## 📖 1. Overview
+
+**JobHunt Agent** is an AI-powered job search and matching platform. 
+
+### Why was it built?
+- **Keyword matching is broken:** Most job portals only look for exact words. If a resume says *"FastAPI specialist"* but the job asks for *"Python backend"*, the candidate might get rejected.
+- **Scam jobs are everywhere:** Fraudulent posts trick job seekers into paying fees or chatting on Telegram.
+
+### What does JobHunt Agent do?
+- **Understands Meaning:** Uses Sentence Transformers (`all-MiniLM-L6-v2`) to turn resumes and job descriptions into mathematical vectors and computes true **Cosine Similarity**.
+- **Detects Scams:** Analyzes job listings with a heuristic fraud engine to alert users about suspicious offers.
+- **Gives Actionable Feedback:** Highlights matched skills, missing skills, and overall compatibility scores.
+
+---
+
+## 📸 2. Application Screenshots
+
+| 1. Candidate Dashboard | 2. Semantic Resume Matching |
+|:---:|:---:|
+| ![Dashboard](docs/screenshots/dashboard.png) | ![Resume Analysis](docs/screenshots/resume_analysis.png) |
+| *Overview metrics, recent applications, and top AI matched jobs* | *Resume parser extracting skills and computing match percentage* |
+
+| 3. Smart Job Search & Filters | 4. Fake Job & Scam Detection |
+|:---:|:---:|
+| ![Find Jobs Feed](docs/screenshots/jobs_feed.png) | ![Risk Analysis](docs/screenshots/risk_analysis.png) |
+| *Job listings ranked by real similarity percentage* | *Heuristic security engine warning users about suspicious postings* |
+
+<div align="center">
+
+### Landing Page
+![Landing Page](docs/screenshots/landing_page.png)  
+*Modern, responsive landing page introducing the AI job hunt portal*
+
+</div>
+
+---
+
+## 💻 3. Tech Stack
 
 ### Frontend
-| Technology | Version | Purpose |
-|-----------|---------|---------|
-| React.js | 19 | UI Framework |
-| Vite | 8 | Build Tool & Dev Server |
-| Tailwind CSS | v4 | Styling |
-| React Router | 7 | Client-side Routing |
-| Lucide React | latest | Icon Library |
-| Axios | 1.x | HTTP Client |
+| Tool | Purpose |
+|:---|:---|
+| **React 19** | User interface components and reactive state |
+| **Vite 8** | High-speed frontend build tool and dev server |
+| **Tailwind CSS v4** | Modern responsive design and custom styling |
+| **React Router 7** | Client-side page navigation |
+| **Lucide React** | Clean, accessible UI icons |
+| **Axios** | REST API calls between frontend and backend |
 
 ### Backend
-| Technology | Version | Purpose |
-|-----------|---------|---------|
-| Python | 3.11+ | Backend Language |
-| FastAPI | 0.110+ | REST API Framework |
-| Uvicorn | 0.28+ | ASGI Server |
-| Pydantic | v2 | Data Validation |
-| python-multipart | 0.0.9+ | File Upload |
+| Tool | Purpose |
+|:---|:---|
+| **Python 3.11+** | Core backend programming language |
+| **FastAPI** | High-performance, asynchronous REST API framework |
+| **Uvicorn** | Lightning-fast ASGI production web server |
+| **Pydantic v2** | Data schema validation and typing |
+| **PyPDF & python-docx** | Resume file text extraction (PDF, DOCX, TXT) |
 
-### AI / Machine Learning (LOCAL - No External Paid APIs)
-| Technology | Purpose |
-|-----------|---------|
-| `sentence-transformers>=2.5.0` | Pre-trained MiniLM model loading |
-| `all-MiniLM-L6-v2` (HuggingFace) | 384-d semantic text embeddings |
-| `scikit-learn>=1.4.0` | `cosine_similarity()` computation |
-| `numpy` | Dense matrix operations |
-| `pypdf` | PDF resume text extraction |
-| `python-docx` | DOCX resume text extraction |
-
-### Data Storage (MVP)
-- `backend/data/jobs.json` — 32 realistic job records (all categories)
-- `localStorage` — Frontend user state (auth, saved jobs, applications, preferences)
+### AI & Machine Learning (100% Local — No Paid API Keys)
+| Tool | Purpose |
+|:---|:---|
+| **`all-MiniLM-L6-v2`** | 384-dimensional dense sentence embeddings from HuggingFace |
+| **Sentence-Transformers** | Deep learning framework for generating text vectors |
+| **Scikit-Learn** | Pairwise Cosine Similarity computation matrix |
+| **NumPy** | Vector operations and fast array calculations |
 
 ---
 
-## Semantic Matching Algorithm
+## 🏗️ 4. Architecture
 
-The core AI pipeline:
+### System Architecture Diagram
 
-```python
-from sentence_transformers import SentenceTransformer
-from sklearn.metrics.pairwise import cosine_similarity
+```mermaid
+flowchart TD
+    A[Candidate Resume\nPDF / DOCX / Text] --> B[React 19 Frontend\nVite + Tailwind]
+    B -->|REST API / JSON| C[FastAPI Backend\nPython 3.11]
+    
+    subgraph AI Engine [AI Semantic & Risk Engine]
+        C --> D[Resume Parser\nExtracts Text & Skills]
+        D --> E[all-MiniLM-L6-v2\nEncodes to 384-d Vector]
+        E --> F[Cosine Similarity Matrix\nResume Vector vs Job Vectors]
+        C --> G[Fake Job Risk Detector\n7 Heuristic Scam Rules]
+    end
+    
+    subgraph Data Store [Data Storage]
+        H[(jobs.json\nPre-indexed Jobs & Vectors)] --> F
+    end
 
-# 1. Model loaded ONCE at FastAPI startup
-model = SentenceTransformer("all-MiniLM-L6-v2")
-
-# 2. Job embeddings pre-computed and cached in RAM
-job_embeddings = model.encode(job_texts, convert_to_numpy=True)
-
-# 3. At matching time - only resume encoded
-resume_embedding = model.encode([resume_text], convert_to_numpy=True)
-
-# 4. Cosine similarity between all job vectors and resume vector
-similarities = cosine_similarity(resume_embedding, job_embeddings)[0]
-
-# 5. Map to percentage score
-match_score = round(max(0.0, similarity) * 100, 1)  # e.g., 80.0%
+    F --> I[Ranked Job Results\nMatch % + Skill Gap Analysis]
+    G --> I
+    I --> B
 ```
 
-> **IMPORTANT**: Match scores are **100% real** — derived from MiniLM cosine similarity. No random numbers or hardcoded values.
+### Simple Flow Explanation:
+1. **User Uploads Resume:** Frontend sends resume to backend.
+2. **AI Vector Encoding:** MiniLM model creates a 384-number fingerprint of candidate profile.
+3. **Similarity Comparison:** AI measures angle (cosine) between resume vector and all job vectors.
+4. **Scam Filter:** Detects phishing keywords, suspicious salaries, or anonymous companies.
+5. **UI Response:** Shows ranked jobs with match scores (e.g., `85% Match`) and safety badges.
 
 ---
 
-## Fake Job Risk Detection
+## 📊 5. Sample Output
 
-A transparent rule-based heuristic engine (`backend/services/fake_job_detector.py`) checks for:
+### A. Semantic Match Output (`POST /api/match-jobs`)
 
-1. Scam keywords (Telegram, wire transfer, registration fee, crypto, gift cards)
-2. Missing or anonymous company information
-3. Missing job location
-4. Suspiciously short/vague job descriptions (< 120 chars)
-5. Unrealistic salary claims for zero experience
-6. Very few or no skill requirements
-7. Urgency bait in job titles
-
-Returns a `risk_score` (0–100), `risk_level` (Low / Moderate / High), and detailed flagged reasons.
-
-> Labeled as **"Prototype Fake Job Risk Analysis"** in all UI components.
-
----
-
-## Project Folder Structure
-
+**Input Resume Text:**
+```text
+Python developer experienced with FastAPI, REST APIs, PostgreSQL, Docker, and microservices architecture.
 ```
-job_hunt/
-├── backend/
-│   ├── ai/
-│   │   ├── __init__.py
-│   │   └── matching.py              # SemanticMatchingEngine (MiniLM singleton + cosine similarity)
-│   ├── data/
-│   │   ├── jobs.json                # 32 realistic job records (30 clean + 2 scam test cases)
-│   │   └── users.json               # Demo user seed
-│   ├── models/
-│   │   ├── __init__.py
-│   │   └── schemas.py               # Pydantic models
-│   ├── routes/
-│   │   ├── __init__.py
-│   │   ├── jobs.py                  # GET /api/jobs, GET /api/jobs/{id}
-│   │   ├── matching.py              # POST /api/match-jobs
-│   │   ├── resume.py                # POST /api/analyze-resume, POST /api/upload-resume
-│   │   ├── fake_detector.py         # POST /api/fake-job-check
-│   │   └── stats.py                 # GET /api/stats
-│   ├── services/
-│   │   ├── __init__.py
-│   │   ├── fake_job_detector.py     # Heuristic scam detection rules
-│   │   └── resume_parser.py         # PDF/DOCX/TXT extraction + entity parsing
-│   ├── venv/                        # Python virtual environment (not committed)
-│   ├── main.py                      # FastAPI app with lifespan (model init at startup)
-│   └── requirements.txt
-├── frontend/
-│   ├── src/
-│   │   ├── assets/
-│   │   ├── components/
-│   │   │   ├── common/
-│   │   │   │   ├── Navbar.jsx
-│   │   │   │   ├── Sidebar.jsx
-│   │   │   │   ├── Footer.jsx
-│   │   │   │   ├── LoadingSpinner.jsx
-│   │   │   │   ├── MatchBadge.jsx
-│   │   │   │   └── RiskBadge.jsx
-│   │   │   └── jobs/
-│   │   │       └── JobCard.jsx
-│   │   ├── layouts/
-│   │   │   └── MainLayout.jsx
-│   │   ├── pages/
-│   │   │   ├── LandingPage.jsx
-│   │   │   ├── LoginPage.jsx
-│   │   │   ├── DashboardPage.jsx
-│   │   │   ├── FindJobsPage.jsx
-│   │   │   ├── JobDetailsPage.jsx
-│   │   │   ├── ResumeAnalysisPage.jsx
-│   │   │   ├── SavedJobsPage.jsx
-│   │   │   ├── ApplicationsPage.jsx
-│   │   │   ├── CoverLetterPage.jsx
-│   │   │   ├── AnalyticsPage.jsx
-│   │   │   ├── PreferencesPage.jsx
-│   │   │   ├── AcademicMappingPage.jsx
-│   │   │   └── AboutPage.jsx
-│   │   ├── services/
-│   │   │   ├── api.js               # Axios client for FastAPI endpoints
-│   │   │   └── storage.js           # localStorage helpers
-│   │   ├── App.jsx                  # React Router setup
-│   │   ├── main.jsx
-│   │   └── index.css
-│   ├── index.html
-│   ├── package.json
-│   ├── vite.config.js
-│   └── tailwind.config.js
-└── README.md
+
+**API JSON Response:**
+```json
+{
+  "total_jobs_evaluated": 32,
+  "execution_time_ms": 18.4,
+  "model_used": "all-MiniLM-L6-v2",
+  "results": [
+    {
+      "job_id": 1,
+      "title": "Python Backend Developer",
+      "company": "TechNova Solutions",
+      "match_score": 82.5,
+      "match_level": "High Match",
+      "matched_skills": ["Python", "FastAPI", "Docker", "REST APIs"],
+      "missing_skills": ["PostgreSQL", "Git"],
+      "risk": {
+        "risk_score": 5,
+        "risk_level": "Low Risk",
+        "flags": []
+      }
+    }
+  ]
+}
+```
+
+### B. Fake Job Risk Alert Output (`POST /api/fake-job-check`)
+
+**Scam Job Listing Detected:**
+```json
+{
+  "job_id": 31,
+  "title": "Urgent Remote Data Entry - Earn $5,000/week!",
+  "company": "Confidential Employer",
+  "risk": {
+    "risk_score": 85,
+    "risk_level": "High Risk",
+    "flags": [
+      "Mentions upfront registration fee",
+      "Directs candidates to unverified Telegram handle",
+      "Unrealistic salary for entry-level experience",
+      "Anonymous company identity"
+    ]
+  }
+}
 ```
 
 ---
 
-## Installation & Setup
+## ⚙️ 6. Working (How It Works)
 
-### Prerequisites
-- Python 3.11+
-- Node.js 20+
-- npm 10+
-- Internet connection (first run — downloads `all-MiniLM-L6-v2` model ~91MB from HuggingFace)
+```
+[1. Input Resume] ──> [2. Vector Embedding] ──> [3. Cosine Similarity] ──> [4. Risk Audit] ──> [5. Ranked Jobs]
+```
+
+1. **Step 1: Input & Extraction**
+   - The user pastes text or uploads a PDF/DOCX resume.
+   - The parser extracts clean text and identifies existing skills.
+
+2. **Step 2: Vector Embedding**
+   - The local `all-MiniLM-L6-v2` transformer model translates resume text into a **384-dimensional dense vector**.
+   - Each dimension captures deep semantic meaning rather than just letters and keywords.
+
+3. **Step 3: Cosine Similarity Matching**
+   - The system calculates the cosine angle between the resume vector $\vec{u}$ and pre-indexed job listing vectors $\vec{v}$:
+     $$\text{Similarity}(\vec{u}, \vec{v}) = \frac{\vec{u} \cdot \vec{v}}{\|\vec{u}\| \|\vec{v}\|}$$
+   - Scores are converted to percentage values ($0\% - 100\%$).
+
+4. **Step 4: Heuristic Scam Analysis**
+   - Each job passes through 7 automated security rules:
+     - Payment/fee requests
+     - Telegram/WhatsApp redirects
+     - Empty company name or missing address
+     - Vague, ultra-short job descriptions (< 120 characters)
+     - Outlandish pay-to-experience ratios
+
+5. **Step 5: Ranked Output**
+   - Results are delivered to the frontend sorted from highest to lowest match percentage with visual risk badges.
 
 ---
 
-### Backend Setup
+## 📚 7. Reference of Papers
 
+This project is built upon foundational research in Natural Language Processing and transformer architectures:
+
+1. **Sentence-BERT (SBERT):**
+   > **Reimers, N., & Gurevych, I. (2019).** *Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks.*  
+   > Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing (EMNLP).  
+   > Link: [https://arxiv.org/abs/1908.10084](https://arxiv.org/abs/1908.10084)  
+   > *Contribution used:* Siamese network architecture for fast pairwise semantic vector comparison.
+
+2. **MiniLM (Self-Attention Distillation):**
+   > **Wang, W., Wei, F., Dong, L., Bao, H., Yang, N., & Zhou, M. (2020).** *MINILM: Deep Self-Attention Distillation for Task-Agnostic Compression of Pre-Trained Transformers.*  
+   > Advances in Neural Information Processing Systems (NeurIPS 2020).  
+   > Link: [https://arxiv.org/abs/2002.10957](https://arxiv.org/abs/2002.10957)  
+   > *Contribution used:* Compressed, low-latency transformer model (`all-MiniLM-L6-v2`) ideal for real-time edge and CPU inference.
+
+3. **Academic Project Reference:**
+   > *"JobHunt Agent – An Intelligent Agentic AI for Automated Job Discovery and Filtering."*  
+   > Academic Research MVP & Semantic Matching Architecture.
+
+---
+
+## 🚀 8. Demo Walkthrough
+
+### 1. Prerequisites
+- **Python 3.11+** installed
+- **Node.js 18+** & **npm** installed
+
+---
+
+### 2. Fast One-Command Launch (Unified)
+From the project root directory, run:
 ```bash
-cd backend
-
-# 1. Create virtual environment
-python -m venv venv
-
-# 2. Activate virtual environment
-# Windows:
-.\venv\Scripts\activate
-# macOS/Linux:
-source venv/bin/activate
-
-# 3. Install all Python dependencies
-pip install -r requirements.txt
-
-# 4. Start FastAPI server (model downloads automatically on first run)
-uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+python run.py
 ```
-
-**On first run**, the terminal will show:
-```
-[*] Initializing SemanticMatchingEngine with all-MiniLM-L6-v2...
-Loading weights: 100%|##########| 103/103
-[*] Encoding 32 job listings in memory...
-[OK] MiniLM model and 32 job embeddings successfully cached in 11.57s!
-INFO:     Uvicorn running on http://0.0.0.0:8000
-```
+*Starts the server at **http://localhost:8000** serving both API and frontend!*
 
 ---
 
-### Frontend Setup
-
-```bash
-cd frontend
-
-# 1. Install dependencies
-npm install
-
-# 2. Start Vite development server
-npm run dev
-```
-
-Frontend will be available at: **http://localhost:5173**
-
----
-
-## How to Run (Both Servers)
-
-Open **two terminal windows**:
+### 3. Alternative: Running Services Separately
 
 **Terminal 1 — Backend:**
 ```bash
-cd job_hunt/backend
-.\venv\Scripts\activate        # Windows
+cd backend
+python -m venv venv
+.\venv\Scripts\activate        # Windows (or source venv/bin/activate on macOS/Linux)
+pip install -r requirements.txt
 uvicorn main:app --reload --port 8000
 ```
 
 **Terminal 2 — Frontend:**
 ```bash
-cd job_hunt/frontend
+cd frontend
+npm install
 npm run dev
 ```
-
-Then open **http://localhost:5173** in your browser.
-
----
-
-## API Endpoints
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `GET` | `/api/health` | System health, model load status |
-| `GET` | `/api/jobs` | All jobs with search/filter params |
-| `GET` | `/api/jobs/{id}` | Single job with risk assessment |
-| `POST` | `/api/match-jobs` | **Real MiniLM semantic matching** (core endpoint) |
-| `POST` | `/api/analyze-resume` | Parse resume text for skills/education |
-| `POST` | `/api/upload-resume` | Upload PDF/DOCX/TXT and analyze |
-| `POST` | `/api/fake-job-check` | Heuristic scam/fraud risk assessment |
-| `GET` | `/api/stats` | Dataset and corpus statistics |
-
-### Example: Match Jobs
-
-**Request:**
-```json
-POST /api/match-jobs
-{
-    "resume_text": "Python developer with FastAPI, PostgreSQL, Docker, REST APIs"
-}
-```
-
-**Response:**
-```json
-{
-    "total_jobs_evaluated": 32,
-    "matches_returned": 30,
-    "execution_time_ms": 23.05,
-    "model_used": "all-MiniLM-L6-v2",
-    "results": [
-        {
-            "job_id": 1,
-            "title": "Python Backend Developer",
-            "company": "TechNova Solutions",
-            "match_score": 80.0,
-            "similarity": 0.8001,
-            "match_level": "High Match",
-            "matched_skills": ["Python", "FastAPI", "Docker"],
-            "missing_skills": ["SQL", "Git"],
-            "risk": {
-                "risk_score": 5,
-                "risk_level": "Low",
-                "reasons": []
-            }
-        }
-    ]
-}
-```
+*Frontend runs at **http://localhost:5173**.*
 
 ---
 
-## Demo Login Credentials
+### 4. Step-by-Step Evaluator Demo Steps
 
-For academic evaluation:
-| Field | Value |
-|-------|-------|
-| Email | `demo@jobhunt.com` |
-| Password | `123456` |
-
----
-
-## Evaluator Demo Walkthrough
-
-1. Open **http://localhost:5173** → Landing page with architecture diagram
-2. Click **"Demo Login"** → Fill defaults → Submit
-3. **Dashboard** → View 6 metric cards + Real MiniLM top 5 matches
-4. **Resume Analysis** → Click any "Test Preset" → Parse & Extract → Match with 32 Jobs
-5. **Find Jobs** → All 32 jobs ranked by semantic score, filterable
-6. **Job Details** → View Match breakdown, Risk reasons, Cover letter CTA
-7. **Saved Jobs** / **Applications** → Save and track jobs
-8. **Cover Letter** → Generate personalized letter
-9. **Analytics** → See skill demand, location distribution, funnel stats
-10. **Academic Mapping** → SDG 8/9/16, PO2-12, PSO1-3 tables
+| Step | Page | Action |
+|:---:|:---|:---|
+| **1** | **Landing Page** | Open `http://localhost:8000/` and click **"Get Started"** or **"Demo Login"**. |
+| **2** | **Login** | Use Demo credentials: <br>• **Email:** `demo@jobhunt.com`<br>• **Password:** `123456` |
+| **3** | **Dashboard** | View metrics: Total Jobs, High Matches, Saved Jobs, and Top AI Recommendations. |
+| **4** | **Resume Analysis** | Click **"Resume Analysis"**, pick a preset (e.g. *Full Stack Developer*), and click **"Analyze & Match"**. Observe real MiniLM cosine scores. |
+| **5** | **Find Jobs** | Browse 32 indexed jobs. Filter by Remote / Full-time, or sort by Match Score. |
+| **6** | **Job Details & Risk** | Click on any job card (e.g., scam job #31) to view the **Fake Job Risk Breakdown** with warning flags. |
+| **7** | **Applications & Saved** | Save jobs to your favorites and track application statuses. |
 
 ---
 
-## Implemented Features (50% Real MVP)
+## 👨‍🎓 9. Student Details
 
-| Feature | Status | Technology |
-|---------|--------|-----------|
-| Semantic job matching | ✅ Real | all-MiniLM-L6-v2 + cosine_similarity |
-| 32 realistic job listings | ✅ Real | jobs.json with embedding cache |
-| Resume text parsing (skills, education) | ✅ Real | Rule/regex-based heuristic parser |
-| PDF / DOCX / TXT resume upload | ✅ Real | pypdf + python-docx |
-| Fake job heuristic detection | ✅ Real | Custom pattern-matching rules |
-| Job search & multi-filter | ✅ Real | Client-side filtering + API |
-| Saved jobs (localStorage) | ✅ Real | Browser localStorage |
-| Application status tracker | ✅ Real | localStorage state machine |
-| Cover letter generator | ✅ Prototype | Deterministic template engine |
-| Analytics dashboard | ✅ Real | Real dataset aggregations |
-| User preferences | ✅ Real | localStorage |
-| SDG / PO / PSO academic mapping | ✅ Documented | Static page |
-
-## Future Scope (Phase 2)
-
-| Feature | Technology |
-|---------|-----------|
-| Live job scraping | LinkedIn / Indeed APIs / Playwright |
-| Database persistence | MongoDB Atlas |
-| Job alert notifications | Telegram Bot API |
-| Browser integration | Chrome Extension |
-| Adaptive personalization | Reinforcement learning |
-| Cloud deployment | AWS / GCP / Railway |
+| Field | Information |
+|:---|:---|
+| **Student Name** | **Vasanth Nadar** |
+| **GitHub Profile** | [@Vasanth6100](https://github.com/Vasanth6100) |
+| **GitHub Repository** | [Vasanth6100/Job_Hunt](https://github.com/Vasanth6100/Job_Hunt) |
+| **Email** | [vasanthnadar610@gmail.com](mailto:vasanthnadar610@gmail.com) |
+| **Project Title** | JobHunt Agent – Intelligent Agentic AI for Automated Job Discovery and Filtering |
+| **Degree / Department** | Computer Science & Engineering |
+| **Academic Year** | 2025 – 2026 |
 
 ---
 
-## Academic Compliance Note
+<div align="center">
 
-This project honestly distinguishes between:
+⭐ **Star this repository if you find it helpful!** ⭐  
+*Built with ❤️ by Vasanth Nadar*
 
-- **REAL AI**: Sentence Transformers + cosine similarity = **no fake match scores**
-- **PROTOTYPE**: Resume entity extraction, Cover letter template engine
-- **FUTURE**: MongoDB, live scraping, Telegram, Chrome extension, advanced RL personalization
-
-All components are clearly labeled in the UI.
-
----
-
-*JobHunt Agent | Academic Research MVP | IEEE Reference Project*
+</div>

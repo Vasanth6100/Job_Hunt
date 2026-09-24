@@ -12,9 +12,9 @@ export const storage = {
   getUser: () => {
     try {
       const data = localStorage.getItem(STORAGE_KEYS.USER);
-      return data ? JSON.parse(data) : null;
+      return data ? JSON.parse(data) : { email: 'demo@jobhunt.com', name: 'Demo Candidate', role: 'student' };
     } catch (e) {
-      return null;
+      return { email: 'demo@jobhunt.com', name: 'Demo Candidate', role: 'student' };
     }
   },
 
